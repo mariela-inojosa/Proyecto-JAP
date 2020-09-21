@@ -139,3 +139,15 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.unchecked {
+  color: black;
+}
+
+rating.input.radio { 
+    display: none;
+}
+
+.esconder {
+  display:none;
+}
