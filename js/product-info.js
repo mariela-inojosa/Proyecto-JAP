@@ -94,9 +94,6 @@ document.addEventListener("DOMContentLoaded", function(e){
                     allProducts = resultObj.data;
                     showRelatedProducts(productPos, allProducts);
 
-                   // console.log(allProducts[1]);
-                   // console.log(allProducts[3]);
-
                     }
                 })
 
