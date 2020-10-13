@@ -4,6 +4,7 @@ var costoUnidad =  [];
 var costoUnidadEnPesos = [];
 var subtotal = [];
 var subtotalFinal = [];
+var numero = 0;
 
 function showArticles(array){
     let htmlContent = "";
@@ -56,7 +57,6 @@ function envio(){
     let botones = document.getElementById("envio");
     botones.onchange = function(e){
         htmlContent = "";
-        console.log(e.target.value);
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
         console.log(subtotalFinal.reduce(reducer));
         let numero = subtotalFinal.reduce(reducer);
@@ -78,7 +78,6 @@ function envio(){
 
         var totalFinal = numero + Number(htmlContent);
         console.log(totalFinal);
-
 
         document.getElementById("tipoDeEnvio").innerHTML = htmlContent;
         document.getElementById("total").innerHTML = totalFinal;

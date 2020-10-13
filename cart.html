@@ -50,40 +50,48 @@
         </div>    </div>
   </nav>
 
-  <h3>Carrito</h3>
-  <br>
-
-  <div class="cart">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Producto</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody id="cartProduct">
-      </tbody>
-    </table>
-    <p class="mr-5 text-right">Subtotal: <span id="subtotal"></span></p>
-    <p class="mr-5 text-right">Seleccione su tipo de envío:</p>
-    <form id="envio">
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-secondary text-right">
-        <input type="radio" name="options" id="option1" value="gold" checked> Gold
-      </label>
-      <label class="btn btn-secondary text-right">
-        <input type="radio" name="options" id="option2" value="premium"> Premium
-      </label>
-      <label class="btn btn-secondary text-right">
-        <input type="radio" name="options" id="option3" value="estandar"> Estandar
-      </label>
+  <div class="container">
+    <div class="text-center p-4">
+      <h2>Carrito</h2>
+      <p class="lead">Selecciona los artículos a comprar</p>
     </div>
-    </form>
-    <p class="mr-5 text-right">Costo de Envío: <span id="tipoDeEnvio"></span></p>
-    <p class="mr-5 text-right">Total: <span id="total"></span></p>
+  
+  
+    <div class="cart">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody id="cartProduct">
+        </tbody>
+      </table>
+      <p class="mr-5 text-right"><strong>Subtotal (en Pesos): <span id="subtotal"></span></strong></p>
+  
+      <p class="mr-5 text-right"><strong>Seleccione su Tipo de Envío: </strong></p>
+  
+      <form id="envio" class="row justify-content-end mr-5">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option1" value="gold" checked> Gold
+          </label>
+          <label class="btn btn-secondary text-right">
+            <input type="radio" name="options" id="option2" value="premium"> Premium
+          </label>
+          <label class="btn btn-secondary text-right">
+            <input type="radio" name="options" id="option3" value="estandar"> Estandar
+          </label>
+        </div>
+      </form>
+      <p class="mr-5 text-right"><strong>Costo de Envío: <span id="tipoDeEnvio"></span></strong></p>
+      <p class="mr-5 text-right"><strong>Total: <span id="total"></span></strong></p>
+    </div>
   </div>
+
 
   <div id="spinner-wrapper">
     <div class="lds-ring">
