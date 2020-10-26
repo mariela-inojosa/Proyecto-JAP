@@ -1,10 +1,11 @@
 var cantidadProductos = []; 
-var totalPorProducto = [];
-var costoUnidad =  [];
+var costoUnidad =  0;
 var costoUnidadEnPesos = [];
 var subtotal = [];
 var subtotalFinal = [];
 var numero = 0;
+let botones = document.getElementById("envio");
+const botonPago  = document.getElementById("botonModal");
 
 function showArticles(array){
     let htmlContent = "";
@@ -30,35 +31,40 @@ function calcularTotales(array){
     for (let index = 0; index < cantidadProd.length; index++) {
         const element = cantidadProd[index];
         let costoUnidad =  array[index].unitCost;
+        let moneda =  array[index].currency;
+        sumarSubtotal(element, index, array[index]);
 
-        element.onchange = function (e) {
-            cantidadProductos = e.target.value;
-            var totalPorProducto = cantidadProductos * costoUnidad;
-            var art = document.getElementsByClassName("productTotalByUnit");
-            art[index].innerText = totalPorProducto;
-
-            if (array[index].currency == "USD") {
-                var costoUnidadEnPesos = costoUnidad * 40;
-            }
-            else costoUnidadEnPesos = costoUnidad;
-
-            var subtotal = costoUnidadEnPesos * cantidadProductos;
-            subtotalFinal[index] =+ subtotal;
-           
-            const reducer = (accumulator, currentValue) => accumulator + currentValue;
-            console.log(subtotalFinal.reduce(reducer));
-            let numero = subtotalFinal.reduce(reducer);
-            document.getElementById("subtotal").innerHTML = numero; 
+        element.onchange = function (e) { 
+            
+        sumarSubtotal(element, index, array[index]);
         }
     }
 }
 
+function sumarSubtotal(cifra, index, articulo){        
+    cantidadProductos = cifra.value;
+    var totalPorProducto = cantidadProductos * articulo.unitCost;
+    var art = document.getElementsByClassName("productTotalByUnit");
+    art[index].innerText = totalPorProducto;
+
+    if (articulo.currency == "USD") {
+        var costoUnidadEnPesos = articulo.unitCost * 40;
+    }
+    else costoUnidadEnPesos = articulo.unitCost;
+
+    var subtotal = costoUnidadEnPesos * cantidadProductos;
+    subtotalFinal[index] =+ subtotal;
+   
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    let numero = subtotalFinal.reduce(reducer);
+    document.getElementById("subtotal").innerHTML = numero;
+}
+
 function envio(){
-    let botones = document.getElementById("envio");
     botones.onchange = function(e){
+        botonPago.disabled = false;
         htmlContent = "";
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
-        console.log(subtotalFinal.reduce(reducer));
         let numero = subtotalFinal.reduce(reducer);
 
         if (e.target.value === "gold"){
@@ -77,12 +83,39 @@ function envio(){
         }
 
         var totalFinal = numero + Number(htmlContent);
-        console.log(totalFinal);
 
         document.getElementById("tipoDeEnvio").innerHTML = htmlContent;
         document.getElementById("total").innerHTML = totalFinal;
     }
 }
+
+function validar(){
+    let tarjeta = document.getElementById("tdc");
+    let transferencia = document.getElementById("tb");
+    let numeroTarjeta = document.getElementById("numeroTarjeta");
+    let numeroCuenta = document.getElementById("numeroTransferencia");
+    let formulario = document.getElementById("formularioCompra");
+
+    tarjeta.onclick = (e) => {
+        if (tarjeta.checked === true && transferencia.checked === false) {
+            numeroTarjeta.setAttribute("required", "") && numeroCuenta.removeAttribute("required");
+        }
+    }
+
+    transferencia.onclick = (e) => {
+        if (transferencia.checked === true && tarjeta.checked === false) {
+            numeroCuenta.setAttribute("required", "") && numeroTarjeta.removeAttribute("required");
+        }
+    }
+
+    formulario.onsubmit = (e) => {
+        e.preventDefault();
+        window.location.href = "checkout.html";
+    }
+}
+
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -93,8 +126,9 @@ document.addEventListener("DOMContentLoaded", function(e){
             showArticles(product.articles);
             calcularTotales(product.articles);
             envio();
+            validar();
         }
 
-
     });
+
 });

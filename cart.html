@@ -4,7 +4,6 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <title>eMercado - Todo lo que busques está aquí</title>
@@ -41,13 +40,15 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="username" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="username" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="cart.html">Mi Carrito</a>
           <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
           <a class="dropdown-item" href="index.html" id="logOut">Cerrar Sesión</a>
-        </div>    </div>
+        </div>
+      </div>
   </nav>
 
   <div class="container">
@@ -55,8 +56,8 @@
       <h2>Carrito</h2>
       <p class="lead">Selecciona los artículos a comprar</p>
     </div>
-  
-  
+
+
     <div class="cart">
       <table class="table table-hover">
         <thead>
@@ -70,42 +71,185 @@
         <tbody id="cartProduct">
         </tbody>
       </table>
-      <p class="mr-5 text-right"><strong>Subtotal (en Pesos): <span id="subtotal"></span></strong></p>
-  
-      <p class="mr-5 text-right"><strong>Seleccione su Tipo de Envío: </strong></p>
-  
+      <p class="mr-5 text-right"><strong>Subtotal (en pesos): <span id="subtotal"></span></strong></p>
+
+      <p class="mr-5 text-right"><strong>Seleccione su tipo de envío: </strong></p>
+
       <form id="envio" class="row justify-content-end mr-5">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
           <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option1" value="gold" checked> Gold
+            <input type="radio" name="options" id="option1" value="gold" checked> Gold (15%)
           </label>
           <label class="btn btn-secondary text-right">
-            <input type="radio" name="options" id="option2" value="premium"> Premium
+            <input type="radio" name="options" id="option2" value="premium"> Premium (7%)
           </label>
           <label class="btn btn-secondary text-right">
-            <input type="radio" name="options" id="option3" value="estandar"> Estandar
+            <input type="radio" name="options" id="option3" value="estandar"> Estandar (5%)
           </label>
         </div>
       </form>
-      <p class="mr-5 text-right"><strong>Costo de Envío: <span id="tipoDeEnvio"></span></strong></p>
+      <p class="mr-5 text-right"><strong>Costo de envío: <span id="tipoDeEnvio"></span></strong></p>
       <p class="mr-5 text-right"><strong>Total: <span id="total"></span></strong></p>
     </div>
-  </div>
 
-
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div id="modal" class="mr-5 text-right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" id="botonModal" data-target="#exampleModal"
+        disabled>
+        Continuar
     </div>
+
+    <hr>
+
   </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+
+
+  <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Método de pago y envío</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+        <div class="modal-body">
+          <form id="formularioCompra" method="POST">
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" required>
+                </div>
+                <div class="col">
+                  <label for="apellido">Apellido</label>
+                  <input type="text" class="form-control" id="apellido" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-check" id="metodos">
+            
+              <input class="form-check-input" type="radio" name="exampleRadios" id="tdc" data-toggle="collapse"
+                href="#multiCollapseExample1">
+              <label class="form-check-label" for="exampleRadios1">
+                Tarjeta de crédito
+              </label>
+            
+              <div class="row">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <div class="card card-body">
+            
+                      <div class="form-group">
+                        <label for="tipoTarjeta">Tarjeta</label>
+                        <select class="form-control" id="tipoTarjeta">
+                          <option selected>Seleccione</option>
+                          <option>MasterCard</option>
+                          <option>Visa</option>
+                          <option>Oca</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="numeroTarjeta">Número de tarjeta</label>
+                        <input type="text" class="form-control" id="numeroTarjeta">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="tb" data-toggle="collapse"
+                  href="#multiCollapseExample2">
+                <label class="form-check-label" for="exampleRadios2">
+                  Transferencia bancaria
+                </label>
+            
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                      <div class="card card-body">
+                        <span><strong>Datos bancarios:</strong></span>
+                        <p>Banco XYZ</p>
+                        <p>Sucursal Centro</p>
+                        <p>Cuenta 1234-5678-90</p>
+            
+                        <div class="form-group">
+                          <label for="numeroTransferencia">Número de transferencia</label>
+                          <input type="text" class="form-control" id="numeroTransferencia">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputAddress">Dirección de entrega</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Calle, Esquina" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputAddress2">Dirección de entrega 2</label>
+              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartamento, Oficina, Piso"
+                required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">Ciudad</label>
+                <input type="text" class="form-control" id="inputCity" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">Departamento</label>
+                <select id="inputState" class="form-control" required>
+                  <option selected>Seleccione</option>
+                  <option>Montevideo</option>
+                  <option>Canelones</option>
+                  <option>San José</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputZip">C.P.</label>
+                <input type="text" class="form-control" id="inputZip" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Notas</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                placeholder="Condiciones especiales para el envío"></textarea>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" id="submitButton" class="btn btn-primary">Comprar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+
+
+
+
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 
 </html>
