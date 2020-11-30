@@ -98,13 +98,15 @@ function validar(){
 
     tarjeta.onclick = (e) => {
         if (tarjeta.checked === true && transferencia.checked === false) {
-            numeroTarjeta.setAttribute("required", "") && numeroCuenta.removeAttribute("required");
+            numeroTarjeta.setAttribute("required", ""); 
+            numeroCuenta.removeAttribute("required");
         }
     }
 
     transferencia.onclick = (e) => {
         if (transferencia.checked === true && tarjeta.checked === false) {
-            numeroCuenta.setAttribute("required", "") && numeroTarjeta.removeAttribute("required");
+            numeroCuenta.setAttribute("required", ""); 
+            numeroTarjeta.removeAttribute("required");
         }
     }
 

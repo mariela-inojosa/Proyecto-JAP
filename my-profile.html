@@ -51,11 +51,110 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
+    <div class="alert" role="alert" style="position: relative; width:auto; top: 0;">
+      <h4 class="alert-heading">Mi perfil</h4>
+      <br>
+      <p>Nombre: <span id="nombre"></span> </p>
       <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+      <p>Edad: <span id="edad"></span></p>
+      <hr>
+      <p>Teléfono: <span id="telefono"></span> </p>
+      <hr>
+      <p>Email: <span id="email"></span> </p>
+      <hr>
+      <p>Direccion: <span id="direccion"></span> </p>
+      <hr>
+      <p>Apto, Oficina, Piso: <span id="direccion2"></span></p>
+      <hr>
+      <p>Ciudad: <span id="ciudad"></span> </p>
+      <hr>
+      <p>Departamento: <span id="departamento"></span> </p>
+      <hr>
+      <p>Código Postal: <span id="codigoPostal"></span> </p>
+    </div>
+    
+
+    <div id="modal" class="mr-5 text-right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" id="botonPerfil" data-target="#datosPerfil">
+        Modificar perfil
+    </div>
+
+
+    <div class="modal fade" id="datosPerfil" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modificar perfil</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+        <div class="modal-body">
+          <form id="infoPerfil" method="POST">
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" name="nombre" id="inputName" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputAge">Edad</label>
+              <input type="number" class="form-control" name="edad" id="inputAge" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputPhone">Teléfono</label>
+              <input type="text" class="form-control" name="telefono" id="inputPhone" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputEmail">Correo electrónico</label>
+              <input type="email" class="form-control" name="email" id="inputEmail" placeholder="ejemplo@ejemplo.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputAddress">Dirección</label>
+              <input type="text" class="form-control" name="direccion" id="inputAddress" placeholder="1234 Calle, Esquina" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputAddress2">Dirección 2</label>
+              <input type="text" class="form-control" name="direccion2" id="inputAddress2" placeholder="Apartamento, Oficina, Piso">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">Ciudad</label>
+                <input type="text" class="form-control" name="ciudad" id="inputCity" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">Departamento</label>
+                <select id="inputState" name="departamento" class="form-control" required>
+                  <option selected>Seleccione</option>
+                  <option>Montevideo</option>
+                  <option>Canelones</option>
+                  <option>San José</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputZip">C.P.</label>
+                <input type="text" class="form-control" name="codigoPostal" id="inputZip" required>
+              </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" id="submitButton" class="btn btn-primary">Guardar cambios</button>
+        </div>
+        </form>
+      </div>
     </div>
   </div>
   <footer class="text-muted bg-light">
